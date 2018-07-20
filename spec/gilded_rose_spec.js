@@ -14,19 +14,28 @@ describe("Gilded Rose", () => {
     it("quality doesn't change", () => {
       expect(items[0].quality).toEqual(0);
     });
+
+    it("quality can't be less than 0", () => {
+      expect(items[0].quality).not.toBeLessThan(0);
+    });
   });
 
   describe("Aged Brie", () => {
     beforeEach(() => {
-      gildedRose = new Shop([ new Item("Aged Brie", 0, 0) ]);
+      gildedRose = new Shop([ new Item("Aged Brie", 1, 0) ]);
       items = gildedRose.updateQuality();
     });
     it("sellIn drops by 1", () => {
-      expect(items[0].sellIn).toEqual(-1);
+      expect(items[0].sellIn).toEqual(0);
     });
 
-    it("quality increases by 2 each day", () => {
-      expect(items[0].quality).toEqual(2);
+    it("quality increases by 1 each day the sellIn is >= 0 ", () => {
+      expect(items[0].quality).toEqual(1);
+    });
+
+    it("quality increases by 2 each day sellIn < 0", () => {
+      gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(3);
     });
 
     it("quality can't be greater than 50", () => {
@@ -74,10 +83,33 @@ describe("Gilded Rose", () => {
     });
 
     it("quality can't be less than 0", () => {
-      for(let i=0; i < 15; i++){
+      expect(items[0].quality).not.toBeLessThan(0);
+    });
+  });
+
+  describe("Conjured", () => {
+    beforeEach(() => {
+      gildedRose = new Shop([ new Item("Conjured", 1, 6) ]);
+      items = gildedRose.updateQuality();
+    });
+    it("sellIn drops by 1", () => {
+      expect(items[0].sellIn).toEqual(1);
+    });
+
+    it("quality drops by 2", () => {
+      expect(items[0].quality).toEqual(4);
+    });
+
+    it("when sellIn < 0, quality drops by 4", () => {
+      gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(0);
+    });
+
+    it("quality can't be less than 0", () => {
+      for(let i=0; i < 10; i++){
           gildedRose.updateQuality();
       };
-      expect(items[0].quality).toEqual(0);
+      expect(items[0].quality).not.toBeLessThan(0);
     });
   });
 });
