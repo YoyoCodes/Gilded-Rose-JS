@@ -73,6 +73,11 @@ describe("Gilded Rose", () => {
       expect(items[0].quality).toEqual(0);
     });
 
-
+    it("quality can't be less than 0", () => {
+      for(let i=0; i < 15; i++){
+          gildedRose.updateQuality();
+      };
+      expect(items[0].quality).toEqual(0);
+    });
   });
 });
