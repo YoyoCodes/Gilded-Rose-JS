@@ -3,7 +3,6 @@ class Item {
     this.name = name;
     this.sellIn = sellIn;
     this.quality = quality;
-    this.number = 0;
   }
 }
 
@@ -24,6 +23,12 @@ class Shop {
 
   setQualityToZero(item) {
       item.quality = 0;
+  }
+
+  reduceQuality(item) {
+    if (item.quality >= 2) {
+      item.quality -= 2;
+    }
   }
 
   updateQuality() {
@@ -66,11 +71,12 @@ class Shop {
       }
 
       if (this.items[i].name == 'Conjured') {
-         if (this.items[i].quality >= 2 && this.items[i].sellIn >= 0) {
-           this.items[i].quality -= 2;
+         if (this.items[i].sellIn >= 0) {
+           this.reduceQuality(item)
          }
-         if (this.items[i].quality >= 4 && this.items[i].sellIn < 0) {
-           this.items[i].quality -= 4;
+         if (this.items[i].sellIn < 0) {
+           this.reduceQuality(item);
+           this.reduceQuality(item);
          }
       }
     }
