@@ -69,11 +69,9 @@ class Shop {
       }
 
       if (this.items[i].name == 'Conjured') {
-         if (this.items[i].sellIn >= 0) {
+         this.reduceQuality(item)
+         if (this.items[i].sellIn < 0) {
            this.reduceQuality(item)
-         }else{
-           this.reduceQuality(item);
-           this.reduceQuality(item);
          }
       }
     }
