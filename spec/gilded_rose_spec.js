@@ -39,10 +39,9 @@ describe("Gilded Rose", () => {
     });
 
     it("quality can't be greater than 50", () => {
-      for(let i=0; i < 50; i++){
-          gildedRose.updateQuality();
-      };
-      expect(items[0].quality).toEqual(50);
+      newGildedRose = new Shop([ new Item("Aged Brie", 1, 50) ]);
+      item = newGildedRose.updateQuality();
+      expect(item[0].quality).toEqual(50);
     });
 
     it("quality can't be less than 0", () => {
@@ -71,12 +70,13 @@ describe("Gilded Rose", () => {
     it("when sellIn is less than 6, quality increases by 3 each day", () => {
       for(let i=0; i < 6; i++){
           gildedRose.updateQuality();
+          console.log(items[0].sellIn, " ", items[0].quality);
       };
       expect(items[0].quality).toEqual(14);
     });
 
     it("when sellIn is less than 0, quality drops to 0", () => {
-      for(let i=0; i < 11; i++){
+      for(let i=0; i < 12; i++){
           gildedRose.updateQuality();
       };
       expect(items[0].quality).toEqual(0);
@@ -93,7 +93,7 @@ describe("Gilded Rose", () => {
       items = gildedRose.updateQuality();
     });
     it("sellIn drops by 1", () => {
-      expect(items[0].sellIn).toEqual(1);
+      expect(items[0].sellIn).toEqual(0);
     });
 
     it("quality drops by 2", () => {
