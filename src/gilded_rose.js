@@ -68,7 +68,6 @@ class Shop {
          }
       }
     }
-
     return this.items;
   }
 }
