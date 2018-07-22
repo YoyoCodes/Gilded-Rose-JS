@@ -46,16 +46,14 @@ class Shop {
          if (this.items[i].sellIn < 0) {
            this.increaseQuality(item);
          }
-
       }
 
       if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
         this.increaseQuality(item);
-        if(this.items[i].sellIn < 10 && this.items[i].sellIn >= 5) {
+        if(this.items[i].sellIn < 10) {
           this.increaseQuality(item);
         }
-        if(this.items[i].sellIn < 5 && this.items[i].sellIn >= 0) {
-          this.increaseQuality(item);
+        if(this.items[i].sellIn < 5) {
           this.increaseQuality(item);
         }
         if (this.items[i].sellIn < 0) {
