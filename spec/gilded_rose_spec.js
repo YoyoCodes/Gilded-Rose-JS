@@ -59,11 +59,11 @@ describe("Gilded Rose", () => {
       expect(items[0].sellIn).toEqual(10);
     });
 
-    it("when sellIn is greather than 10, quality increases by 1 each day", () => {
+    it("when sellIn is greater than 10, quality increases by 1 each day", () => {
       expect(items[0].quality).toEqual(1);
     });
 
-    it("when sellIn is less than 11, quality increases by 2 each day", () => {
+    it("when sellIn is less or equal to 10, quality increases by 2 each day", () => {
       gildedRose.updateQuality();
       expect(items[0].quality).toEqual(3);
     });
