@@ -31,13 +31,13 @@ class Shop {
         if (this.items[i].sellIn < 0) {
           this.items[i].quality = 0;
         }
-        if(this.items[i].sellIn >= 10 && this.items[i].quality < 50) {
+        if(this.items[i].sellIn >= 10 && this.items[i].quality < 50 && this.items[i].sellIn >= 0) {
           this.items[i].quality += 1;
         }
-        if(this.items[i].sellIn < 6 && this.items[i].quality < 47) {
+        if(this.items[i].sellIn < 6 && this.items[i].quality < 47 && this.items[i].sellIn >= 0) {
           this.items[i].quality += 3;
         }
-        if(this.items[i].sellIn > 5 && this.items[i].sellIn < 10 && this.items[i].quality < 48) {
+        if(this.items[i].sellIn > 5 && this.items[i].sellIn < 10 && this.items[i].quality < 48 ) {
           this.items[i].quality += 2;
         }
       }
