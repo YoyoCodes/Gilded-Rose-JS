@@ -70,8 +70,7 @@ describe("Gilded Rose", () => {
     it("when sellIn is less than 6, quality increases by 3 each day", () => {
       for(let i=0; i < 6; i++){
           gildedRose.updateQuality();
-          console.log(items[0].sellIn, " ", items[0].quality);
-      };
+        }  
       expect(items[0].quality).toEqual(14);
     });
 
