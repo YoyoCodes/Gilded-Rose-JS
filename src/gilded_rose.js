@@ -3,6 +3,7 @@ class Item {
     this.name = name;
     this.sellIn = sellIn;
     this.quality = quality;
+    this.number = 0;
   }
 }
 
@@ -10,42 +11,61 @@ class Shop {
   constructor(items=[]){
     this.items = items;
   }
-  
+
+  decreaseSellIn(item) {
+    item.sellIn -=  1;
+  }
+
+  increaseQuality(item) {
+    if (item.quality < 50) {
+      item.quality += 1;
+    }
+  }
+
+  setQualityToZero(item) {
+      item.quality = 0;
+  }
+
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
+      let item = this.items[i];
+
       if (this.items[i].name == 'Sulfuras, Hand of Ragnaros') {
          continue;
       }
 
+      this.decreaseSellIn(item);
+
       if (this.items[i].name == 'Aged Brie') {
-         this.items[i].sellIn -= 1;
-         if (this.items[i].sellIn >= 0 && this.items[i].quality < 50) {
-           this.items[i].quality += 1;
+         if (this.items[i].sellIn >= 0) {
+           this.increaseQuality(item);
+         }else{
+           this.increaseQuality(item);
+           this.increaseQuality(item);
          }
-         if(this.items[i].sellIn < 0 && this.items[i].quality < 49) {
-           this.items[i].quality += 2;
-         }
+
       }
 
       if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
-        this.items[i].sellIn -= 1;
         if (this.items[i].sellIn < 0) {
-          this.items[i].quality = 0;
+          this.setQualityToZero(item);
         }
-        if(this.items[i].sellIn >= 10 && this.items[i].quality < 50 && this.items[i].sellIn >= 0) {
-          this.items[i].quality += 1;
+        if(this.items[i].sellIn >= 10 && this.items[i].sellIn >= 0) {
+          this.increaseQuality(item);
         }
 
-        if(this.items[i].sellIn < 10 && this.items[i].sellIn >= 5 && this.items[i].quality < 48 ) {
-          this.items[i].quality += 2;
+        if(this.items[i].sellIn < 10 && this.items[i].sellIn >= 5) {
+          this.increaseQuality(item);
+          this.increaseQuality(item);
         }
-        if(this.items[i].sellIn < 5 && this.items[i].quality < 47 && this.items[i].sellIn >= 0) {
-          this.items[i].quality += 3;
+        if(this.items[i].sellIn < 5 && this.items[i].sellIn >= 0) {
+          this.increaseQuality(item);
+          this.increaseQuality(item);
+          this.increaseQuality(item);
         }
       }
 
       if (this.items[i].name == 'Conjured') {
-         this.items[i].sellIn -= 1;
          if (this.items[i].quality >= 2 && this.items[i].sellIn >= 0) {
            this.items[i].quality -= 2;
          }
