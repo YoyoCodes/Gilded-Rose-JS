@@ -42,10 +42,8 @@ class Shop {
       this.decreaseSellIn(item);
 
       if (this.items[i].name == 'Aged Brie') {
-         if (this.items[i].sellIn >= 0) {
-           this.increaseQuality(item);
-         }else{
-           this.increaseQuality(item);
+        this.increaseQuality(item);
+         if (this.items[i].sellIn < 0) {
            this.increaseQuality(item);
          }
 
