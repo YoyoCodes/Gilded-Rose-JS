@@ -35,35 +35,35 @@ class Shop {
     for (var i = 0; i < this.items.length; i++) {
       let item = this.items[i];
 
-      if (this.items[i].name == 'Sulfuras, Hand of Ragnaros') {
+      if (item.name == 'Sulfuras, Hand of Ragnaros') {
          continue;
       }
 
       this.decreaseSellIn(item);
 
-      if (this.items[i].name == 'Aged Brie') {
+      if (item.name == 'Aged Brie') {
         this.increaseQuality(item);
-         if (this.items[i].sellIn < 0) {
+         if (item.sellIn < 0) {
            this.increaseQuality(item);
          }
       }
 
-      if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
+      if (item.name == 'Backstage passes to a TAFKAL80ETC concert') {
         this.increaseQuality(item);
-        if(this.items[i].sellIn < 10) {
+        if(item.sellIn < 10) {
           this.increaseQuality(item);
         }
-        if(this.items[i].sellIn < 5) {
+        if(item.sellIn < 5) {
           this.increaseQuality(item);
         }
-        if (this.items[i].sellIn < 0) {
+        if (item.sellIn < 0) {
           this.dropQualityToZero(item);
         }
       }
 
-      if (this.items[i].name == 'Conjured') {
+      if (item.name == 'Conjured') {
          this.reduceQuality(item)
-         if (this.items[i].sellIn < 0) {
+         if (item.sellIn < 0) {
            this.reduceQuality(item)
          }
       }
